@@ -19,14 +19,13 @@ switch flag,
     ud = get(gcbf,'UserData');
     set(gcbo,'BackGroundColor','Yellow') ;    %change color
     set(gcbf,'WindowButtonUpFcn','inpgui_sf([],[],[],''pushBtnUp'');'); % specify the button release function
-    ud.pushbutton = 1 ;   %update gui config
+       %update gui config
     set(gcbf,'Userdata',ud); %update gui confg data struct
   case 'pushBtnUp',
     ud = get(gcbf,'UserData');
     chnd = findobj(gcbf,'Tag','pbuttn') ;
     set(chnd,'BackGroundColor',[0.831 0.816 0.784]) ;
     set(gcbf,'WindowButtonUpFcn','');
-    ud.pushbutton = 0 ;
     set(gcbf,'Userdata',ud);
   otherwise
     3
@@ -56,21 +55,21 @@ sampleController();
 
 function sys=mdlUpdate(t,x,u,Ts)
 fig = get_param(gcbh,'UserData');
+ 
 sys=x;
 
 
 function sys = mdlOutputs(t,x,u)
  fig = get_param(gcbh,'UserData') ;
- fig
+ 
  if ishandle(fig),
     
 %     chnd = findobj(fig,'Tag','spd_edt') ;
     ud = get(fig,'UserData') ;
-     
-    
+  
 %     set(chnd,'String', num2str(ud.VehSpd)) ;     
-    sys = [ud.pushbutton ud.radiobutton ud.ambientT ud.ambientH];
-    sys
+    sys = [ud.pushbutton ud.resetbutton ud.ambientT ud.ambientH];
+    
  else
      sys = [0 0 0 0];
  end

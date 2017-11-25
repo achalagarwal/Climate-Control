@@ -79,7 +79,13 @@ function pbuttn_Callback(hObject, eventdata, handles)
 % hObject    handle to pbuttn (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
+ud = get(gcbf,'UserData');
+ud.radiobutton
+if ud.radiobutton == 0
+   ud.radiobutton = 1;
+end
+    
+  
 
 
 function edtxt_Callback(hObject, eventdata, handles)
@@ -136,7 +142,7 @@ ud = get(gcbf,'UserData') ; %retrieve user data
 val = get(hObject,'Value') ; % get new value
 
 %update user data
-ud.radiobutton = val ; 
+ud.resetbutton = val ; 
 set(gcbf,'UserData', ud) ;
 
 %-------end of part 3-1 -------%
@@ -168,7 +174,7 @@ function radbuttn_CreateFcn(hObject, eventdata, handles)
 
 %-----part3-2---------------% display initial value
 ud =get(gcbf,'UserData'); % get ud stored in fig userdata field
-set(hObject,'Value', ud.radiobutton) ; %write value in userdata to field
+set(hObject,'Value', ud.resetbutton) ; %write value in userdata to field
 guidata(hObject, handles); %update view
 %-----part2-2 ends----------------%
 

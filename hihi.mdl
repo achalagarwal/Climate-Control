@@ -2,12 +2,12 @@ Model {
   Name			  "hihi"
   Version		  8.6
   MdlSubVersion		  0
-  SavedCharacterEncoding  "windows-1252"
+  SavedCharacterEncoding  "US-ASCII"
   GraphicalInterface {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.15"
+    ComputedModelVersion    "1.16"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -29,7 +29,7 @@ Model {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [379.0, 293.0, 1382.0, 866.0]
+      Location		      [0.0, 23.0, 1680.0, 1027.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -44,7 +44,7 @@ Model {
 	$PropName		"ExplorerBarInfo"
 	$ObjectID		4
 	$ClassName		"Simulink.ExplorerBarInfo"
-	Visible			[1]
+	Visible			[0]
       }
       Object {
 	$PropName		"EditorsInfo"
@@ -53,9 +53,9 @@ Model {
 	IsActive		[1]
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
-	Extents			[1332.0, 691.0]
+	Extents			[1646.0, 884.0]
 	ZoomFactor		[0.8]
-	Offset			[-177.95038615937358, 276.94405328643893]
+	Offset			[-4.526190476202828, -44.630946713561912]
       }
     }
   }
@@ -63,11 +63,11 @@ Model {
   Creator		  "user"
   UpdateHistory		  "UpdateHistoryNever"
   ModifiedByFormat	  "%<Auto>"
-  LastModifiedBy	  "user"
+  LastModifiedBy	  "achal"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Nov 21 16:44:47 2017"
-  RTWModifiedTimeStamp	  433183452
-  ModelVersionFormat	  "1.%<AutoIncrement:15>"
+  LastModifiedDate	  "Thu Nov 23 15:08:53 2017"
+  RTWModifiedTimeStamp	  433350148
+  ModelVersionFormat	  "1.%<AutoIncrement:16>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -1185,7 +1185,7 @@ Model {
   }
   System {
     Name		    "hihi"
-    Location		    [379, 293, 1761, 1159]
+    Location		    [0, 23, 1680, 1050]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -1199,7 +1199,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "80"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "135"
+    SIDHighWatermark	    "136"
     Block {
       BlockType		      Reference
       Name		      "Compare\nTo Constant"
@@ -1279,7 +1279,7 @@ Model {
       Variant		      off
       System {
 	Name			"Fan\nSubsystem"
-	Location		[379, 293, 1761, 1159]
+	Location		[0, 23, 1680, 1050]
 	Open			off
 	ModelBrowserVisibility	off
 	ModelBrowserWidth	200
@@ -2139,6 +2139,15 @@ Model {
     }
     Block {
       BlockType		      Display
+      Name		      "dbutn1"
+      SID		      "136"
+      Ports		      [1]
+      Position		      [230, 463, 320, 487]
+      ZOrder		      78
+      Decimation	      "1"
+    }
+    Block {
+      BlockType		      Display
       Name		      "ecmode"
       SID		      "125"
       Ports		      [1]
@@ -2152,15 +2161,6 @@ Model {
       SID		      "134"
       Position		      [2040, 560, 2070, 590]
       ZOrder		      74
-    }
-    Block {
-      BlockType		      Display
-      Name		      "gbutn"
-      SID		      "126"
-      Ports		      [1]
-      Position		      [80, 483, 170, 507]
-      ZOrder		      69
-      Decimation	      "1"
     }
     Line {
       ZOrder		      1
@@ -2453,11 +2453,10 @@ Model {
       DstPort		      1
     }
     Line {
-      ZOrder		      204
+      ZOrder		      290
       SrcBlock		      "Demux"
       SrcPort		      1
-      Points		      [0, 20]
-      DstBlock		      "gbutn"
+      DstBlock		      "dbutn1"
       DstPort		      1
     }
     Line {
@@ -2495,7 +2494,7 @@ Model {
       ForegroundColor	      "[0.941176, 0.941176, 1.000000]"
       DropShadow	      on
       AnnotationType	      "area_annotation"
-      ZOrder		      18
+      ZOrder		      22
       FontSize		      12
     }
   }

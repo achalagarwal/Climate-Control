@@ -79,13 +79,21 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 ud = get(gcbf,'UserData');
-ud.pushbutton = 0;
-ud.ambientT = 0;
-ud.ambientH = 0;
+ud
+if ud.resetbutton ==0
+ ud.resetbutton =1; %turnoff
+ ud.pushbutton = 0;
+ ud.ambientT = 0;
+ ud.ambientH = 0;
 set(gcbf,'UserData',ud);
-set(gcbh,'UserData',ud);
+    set_param(bdroot, 'SimulationCommand', 'stop');
 
-
+end
+if ud.resetbutton ==1
+    ud.resetbutton = 0; %turnon
+    set(gcbf,'UserData',ud);
+    set_param(bdroot, 'SimulationCommand', 'start');
+end
 function edit1_Callback(hObject, eventdata, handles)
 % hObject    handle to edit1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -227,11 +235,10 @@ function radiobutton1_Callback(hObject, eventdata, handles)
 function figure1_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to figure1 (see GCBO)
 ud.pushbutton = 0 ;
-ud.radiobutton = 0 ;
+ud.resetbutton = 0 ;
 ud.ambientT = 0;
 ud.ambientH = 0;
 set(hObject, 'UserData', ud) ; %store GUI initial values 
-9
 %Store figure handle in block userdata - handle can then be used for
 %manipulating the figure params
 set_param(gcbh,'Userdata',hObject); 
