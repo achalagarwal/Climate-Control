@@ -7,7 +7,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.33"
+    ComputedModelVersion    "1.35"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -29,7 +29,7 @@ Model {
       $ObjectID		      2
       $ClassName	      "Simulink.WindowInfo"
       IsActive		      [1]
-      Location		      [-196.0, 248.0, 1680.0, 1027.0]
+      Location		      [0.0, 23.0, 1680.0, 1027.0]
       Object {
 	$PropName		"ModelBrowserInfo"
 	$ObjectID		3
@@ -54,8 +54,8 @@ Model {
 	ViewObjType		"SimulinkTopLevel"
 	LoadSaveID		"0"
 	Extents			[1646.0, 884.0]
-	ZoomFactor		[0.6]
-	Offset			[826.98285794469871, -711.68523922269071]
+	ZoomFactor		[3.0]
+	Offset			[2321.0439843853692, -235.87954628605533]
       }
     }
   }
@@ -65,9 +65,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "achal"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Nov 28 14:34:38 2017"
-  RTWModifiedTimeStamp	  433780476
-  ModelVersionFormat	  "1.%<AutoIncrement:33>"
+  LastModifiedDate	  "Tue Nov 28 15:49:48 2017"
+  RTWModifiedTimeStamp	  433784987
+  ModelVersionFormat	  "1.%<AutoIncrement:35>"
   ConfigurationManager	  "none"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -953,19 +953,6 @@ Model {
   }
   BlockParameterDefaults {
     Block {
-      BlockType		      Constant
-      Value		      "1"
-      VectorParams1D	      on
-      SamplingMode	      "Sample based"
-      OutMin		      "[]"
-      OutMax		      "[]"
-      OutDataTypeStr	      "Inherit: Inherit from 'Constant value'"
-      LockScale		      off
-      SampleTime	      "inf"
-      FramePeriod	      "inf"
-      PreserveConstantTs      off
-    }
-    Block {
       BlockType		      Demux
       Outputs		      "4"
       DisplayOption	      "none"
@@ -1050,7 +1037,7 @@ Model {
   }
   System {
     Name		    "hihi"
-    Location		    [-196, 248, 1484, 1275]
+    Location		    [0, 23, 1680, 1050]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -1062,7 +1049,7 @@ Model {
     TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "60"
+    ZoomFactor		    "300"
     ReportName		    "simulink-default.rpt"
     SIDHighWatermark	    "205"
     Block {
@@ -1081,22 +1068,15 @@ Model {
       ZeroCross		      on
     }
     Block {
-      BlockType		      Constant
-      Name		      "Constant"
-      SID		      "192"
-      Position		      [1595, 1160, 1625, 1190]
-      ZOrder		      732
-      Value		      "0"
-    }
-    Block {
       BlockType		      Demux
       Name		      "Demux"
       SID		      "122"
-      Ports		      [1, 4]
-      Position		      [140, 126, 145, 299]
+      Ports		      [1, 5]
+      Position		      [145, 128, 150, 302]
       ZOrder		      1524
       BackgroundColor	      "black"
       ShowName		      off
+      Outputs		      "5"
       DisplayOption	      "bar"
     }
     Block {
@@ -1502,11 +1482,11 @@ Model {
       BlockType		      Mux
       Name		      "Mux"
       SID		      "131"
-      Ports		      [5, 1]
-      Position		      [2830, -253, 2845, -37]
+      Ports		      [8, 1]
+      Position		      [2830, -251, 2845, -34]
       ZOrder		      1528
       ShowName		      off
-      Inputs		      "5"
+      Inputs		      "8"
       DisplayOption	      "bar"
     }
     Block {
@@ -1859,7 +1839,7 @@ Model {
       ZOrder		      205
       SrcBlock		      "Demux"
       SrcPort		      2
-      Points		      [0, 5]
+      Points		      [95, 0; 0, 15]
       DstBlock		      "dbutn"
       DstPort		      1
     }
@@ -1867,7 +1847,7 @@ Model {
       ZOrder		      210
       SrcBlock		      "Mux"
       SrcPort		      1
-      Points		      [65, 0; 0, 430]
+      Points		      [65, 0; 0, 425]
       DstBlock		      "S-Function1"
       DstPort		      1
     }
@@ -1885,7 +1865,7 @@ Model {
       Points		      [84, 0]
       Branch {
 	ZOrder			688
-	Points			[0, -370]
+	Points			[0, -405]
 	DstBlock		"Mux"
 	DstPort			3
       }
@@ -1905,7 +1885,7 @@ Model {
 	Points			[271, 0]
 	Branch {
 	  ZOrder		  634
-	  Points		  [0, -110]
+	  Points		  [0, -105]
 	  DstBlock		  "Mux"
 	  DstPort		  1
 	}
@@ -1932,7 +1912,7 @@ Model {
 	Points			[250, 0; 0, -325]
 	Branch {
 	  ZOrder		  636
-	  Points		  [61, 0; 0, -475]
+	  Points		  [61, 0; 0, -490]
 	  DstBlock		  "Mux"
 	  DstPort		  2
 	}
@@ -1960,10 +1940,10 @@ Model {
       ZOrder		      537
       SrcBlock		      "Demux"
       SrcPort		      3
-      Points		      [606, 0]
+      Points		      [118, 0; 0, 20; 483, 0]
       Branch {
 	ZOrder			691
-	Points			[0, -199; 1234, 0; 0, -136]
+	Points			[0, -199; 1234, 0; 0, -191]
 	DstBlock		"Mux"
 	DstPort			4
       }
@@ -2041,7 +2021,7 @@ Model {
       ZOrder		      368
       SrcBlock		      "Demux"
       SrcPort		      1
-      Points		      [419, 0]
+      Points		      [414, 0]
       Branch {
 	ZOrder			538
 	Points			[0, 115]
@@ -2085,7 +2065,7 @@ Model {
 	Points			[0, -35; 41, 0]
 	Branch {
 	  ZOrder		  700
-	  Points		  [0, -54; 2083, 0; 0, -111]
+	  Points		  [0, -54; 2083, 0; 0, -186]
 	  DstBlock		  "Mux"
 	  DstPort		  5
 	}
@@ -2192,8 +2172,18 @@ Model {
       ZOrder		      608
       SrcBlock		      "Room humidity"
       SrcPort		      1
-      DstBlock		      "Scope1"
-      DstPort		      1
+      Points		      [75, 0]
+      Branch {
+	ZOrder			771
+	Points			[0, -1070]
+	DstBlock		"Mux"
+	DstPort			7
+      }
+      Branch {
+	ZOrder			767
+	DstBlock		"Scope1"
+	DstPort			1
+      }
     }
     Line {
       ZOrder		      420
@@ -2238,25 +2228,45 @@ Model {
       ZOrder		      609
       SrcBlock		      "Demux"
       SrcPort		      4
-      Points		      [122, 0; 0, 710]
-      DstBlock		      "Sum1"
-      DstPort		      1
-    }
-    Line {
-      ZOrder		      574
-      SrcBlock		      "Constant"
-      SrcPort		      1
-      Points		      [170, 0]
+      Points		      [9, 0; 0, 245]
       Branch {
-	ZOrder			578
-	DstBlock		"Sum2"
-	DstPort			2
+	ZOrder			760
+	Points			[2543, 0; 0, -295; -68, 0; 0, -255]
+	DstBlock		"Mux"
+	DstPort			8
       }
       Branch {
-	ZOrder			577
-	Points			[290, 0]
-	DstBlock		"Room humidity"
-	DstPort			2
+	ZOrder			756
+	Points			[0, 495]
+	DstBlock		"Sum1"
+	DstPort			1
+      }
+    }
+    Line {
+      ZOrder		      753
+      SrcBlock		      "Demux"
+      SrcPort		      5
+      Points		      [212, 0; 0, 124]
+      Branch {
+	ZOrder			766
+	Points			[2402, 0; 0, -514]
+	DstBlock		"Mux"
+	DstPort			6
+      }
+      Branch {
+	ZOrder			761
+	Points			[0, 766; 1433, 0]
+	Branch {
+	  ZOrder		  578
+	  DstBlock		  "Sum2"
+	  DstPort		  2
+	}
+	Branch {
+	  ZOrder		  577
+	  Points		  [290, 0]
+	  DstBlock		  "Room humidity"
+	  DstPort		  2
+	}
       }
     }
     Annotation {
@@ -2271,7 +2281,7 @@ Model {
       ForegroundColor	      "[0.941176, 0.941176, 1.000000]"
       DropShadow	      on
       AnnotationType	      "area_annotation"
-      ZOrder		      231
+      ZOrder		      237
       FontName		      "Arial"
       FontSize		      12
     }
@@ -2287,7 +2297,7 @@ Model {
       ForegroundColor	      "[0.941176, 0.941176, 1.000000]"
       DropShadow	      on
       AnnotationType	      "area_annotation"
-      ZOrder		      230
+      ZOrder		      236
       FontName		      "Arial"
       FontSize		      12
     }
@@ -2303,7 +2313,7 @@ Model {
       ForegroundColor	      "[0.941176, 0.941176, 1.000000]"
       DropShadow	      on
       AnnotationType	      "area_annotation"
-      ZOrder		      229
+      ZOrder		      235
       FontName		      "Arial"
       FontSize		      12
     }
@@ -2319,7 +2329,7 @@ Model {
       ForegroundColor	      "[0.941176, 0.941176, 1.000000]"
       DropShadow	      on
       AnnotationType	      "area_annotation"
-      ZOrder		      226
+      ZOrder		      232
       FontName		      "Arial"
       FontSize		      12
     }
@@ -2335,7 +2345,7 @@ Model {
       ForegroundColor	      "[0.941176, 0.941176, 1.000000]"
       DropShadow	      on
       AnnotationType	      "area_annotation"
-      ZOrder		      227
+      ZOrder		      233
       FontName		      "Arial"
       FontSize		      12
     }
@@ -2350,7 +2360,7 @@ Model {
       ForegroundColor	      "[0.941176, 0.941176, 1.000000]"
       DropShadow	      on
       AnnotationType	      "area_annotation"
-      ZOrder		      228
+      ZOrder		      234
       FontSize		      12
     }
   }

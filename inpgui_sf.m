@@ -40,7 +40,7 @@ sizes = simsizes;
 
 sizes.NumContStates  = 0;
 sizes.NumDiscStates  = 1;
-sizes.NumOutputs     = 4; %-NS Specify the number of outputs
+sizes.NumOutputs     = 5; %-NS Specify the number of outputs
 sizes.NumInputs      = 0; %-NS Specify the number of inputs
 sizes.DirFeedthrough = 0;
 sizes.NumSampleTimes = 1;
@@ -68,10 +68,10 @@ function sys = mdlOutputs(t,x,u)
     ud = get(fig,'UserData') ;
   
 %     set(chnd,'String', num2str(ud.VehSpd)) ;     
-    sys = [ud.pushbutton ud.resetbutton ud.ambientT ud.ambientH];
+    sys = [ud.pushbutton ud.resetbutton ud.ambientT ud.ambientH ud.humidity];
     
  else
-     sys = [0 0 0 0];
+     sys = [0 0 0 0 0];
  end
  
 % end mdlOutputs

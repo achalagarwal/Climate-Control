@@ -26,7 +26,7 @@ sizes = simsizes;
 sizes.NumContStates  = 0;
 sizes.NumDiscStates  = 1;
 sizes.NumOutputs     = 0;
-sizes.NumInputs      = 5;
+sizes.NumInputs      = 8;
 sizes.DirFeedthrough = 0;
 sizes.NumSampleTimes = 1;
 
@@ -48,11 +48,17 @@ if ishandle(fig), %
       external = findobj(fig,'Tag','edit8');
        current = findobj(fig,'Tag','edit6');
        desired = findobj(fig,'Tag','edit7');
+       
        set(external,'String',round(u(5),1));
        set(current,'String',round(u(3),1));
        set(desired,'String',round(u(4),1));
       
-      
+      hexternal = findobj(fig,'Tag','edit18');
+       hcurrent = findobj(fig,'Tag','edit16');
+       hdesired = findobj(fig,'Tag','edit17');
+       set(hexternal,'String',round(u(6),1));
+       set(hcurrent,'String',round(u(7),1));
+       set(hdesired,'String',round(u(8),1));
        heater = findobj(fig,'Tag','edit3');
        fan = findobj(fig,'Tag','editbox');
        set(heater,'String',round(u(1),0));

@@ -22,7 +22,7 @@ function varargout = sampleController(varargin)
 
 % Edit the above text to modify the response to help sampleController
 
-% Last Modified by GUIDE v2.5 21-Nov-2017 16:39:00
+% Last Modified by GUIDE v2.5 28-Nov-2017 15:33:07
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -85,6 +85,7 @@ if ud.resetbutton ==0
  ud.pushbutton = 0;
  ud.ambientT = 0;
  ud.ambientH = 0;
+ ud.humidity = 0;
 set(gcbf,'UserData',ud);
     set_param(bdroot, 'SimulationCommand', 'stop');
 
@@ -139,6 +140,10 @@ val = get(hObject,'String');
 ud = get(gcbf,'UserData');
 
 if str2double(val)
+    if val<0
+        val = 0
+    end
+    
     ud.ambientH = str2double(val);
 end
 set(gcbf,'UserData',ud);
@@ -238,9 +243,42 @@ ud.pushbutton = 0 ;
 ud.resetbutton = 0 ;
 ud.ambientT = 0;
 ud.ambientH = 0;
+ud.humidity = 0;
 set(hObject, 'UserData', ud) ; %store GUI initial values 
 %Store figure handle in block userdata - handle can then be used for
 %manipulating the figure params
 set_param(gcbh,'Userdata',hObject); 
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
+
+
+% --- Executes on slider movement.
+function slider4_Callback(hObject, eventdata, handles)
+% hObject    handle to slider4 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+val = get(hObject,'Value');
+ud = get(gcbf,'UserData');
+ud.humidity = val;
+set(gcbf,'UserData',ud);
+% Hints: get(hObject,'Value') returns position of slider
+%        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
+
+
+% --- Executes during object creation, after setting all properties.
+function slider4_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to slider4 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+ud = get(gcbf,'UserData')
+set(hObject,'Max',100);
+set(hObject,'Min',0);
+if isfield(ud,'humidity')
+    set(hObject,'Value',ud.humidity)
+else
+    set(hObject, 'Value',0)
+end
+% Hint: slider controls usually have a light gray background.
+if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor',[.9 .9 .9]);
+end
