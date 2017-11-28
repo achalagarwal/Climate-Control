@@ -26,7 +26,7 @@ sizes = simsizes;
 sizes.NumContStates  = 0;
 sizes.NumDiscStates  = 1;
 sizes.NumOutputs     = 0;
-sizes.NumInputs      = 5;
+sizes.NumInputs      = 4;
 sizes.DirFeedthrough = 0;
 sizes.NumSampleTimes = 1;
 
@@ -41,21 +41,23 @@ OpGUI;
 function sys=mdlUpdate(t,x,u,Ts)
 fig = get_param(gcbh,'UserData'); %get figure handle
 sys=x;
-
+'one'
+u(1)
+'two'
+u(2)
+u(3)
+u(4)
+'four'
 if ishandle(fig), % 
      fanlight = findobj(fig,'Tag','radiobutton1');
        heaterlight = findobj(fig,'Tag','radiobutton2');
-      external = findobj(fig,'Tag','edit8');
        current = findobj(fig,'Tag','edit6');
        desired = findobj(fig,'Tag','edit7');
-       set(external,'String',round(u(5),1));
-       set(current,'String',round(u(3),1));
-       set(desired,'String',round(u(4),1));
-      
-      
+       set(current,'String',round(u(3)));
+       set(desired,'String',(u(4)));
        heater = findobj(fig,'Tag','edit3');
        fan = findobj(fig,'Tag','editbox');
-       set(heater,'String',round(u(1),0));
+       set(heater,'String',abs(u(1)));
        set(fan,'String',round(abs(u(2)),0));
        round(abs(u(2)),0)
        
