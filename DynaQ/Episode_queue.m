@@ -1,4 +1,4 @@
-function [ total_reward,steps,Q,Model,Ns,heater_ip, fan_ip, hum_ip ] = Episode_queue( maxsteps, Q,Model , alpha, Ns, gamma,epsilon,theta,statelist,actionlist,grafic,maze,start,goal,heater_ip, fan_ip, hum_ip, temp_curr, hum_curr )
+function [ total_reward,steps,Q,Model,Ns,alpha ] = Episode_queue( maxsteps, Q,Model , alpha, Ns, gamma,epsilon,theta,statelist,actionlist,grafic,maze,start,goal,p_steps )
 % Episode do one episode of the mountain car with sarsa learning
 % maxstepts: the maximum number of steps per episode
 % Q: the current QTable
@@ -7,6 +7,14 @@ function [ total_reward,steps,Q,Model,Ns,heater_ip, fan_ip, hum_ip ] = Episode_q
 % epsilon: probablity of a random action
 % statelist: the list of states
 % actionlist: the list of actions
+
+% Maze
+% Programmed in Matlab 
+% by:
+%  Jose Antonio Martin H. <jamartinh@fdi.ucm.es>
+% 
+% 
+
 
 
 x            = start;
@@ -28,13 +36,10 @@ pqueue = PriorityQueue();
 for i=1:maxsteps    
         
     % convert the index of the action into an action value
-    action = actionlist(a);
+    action = actionlist(a);    
     
     %do the selected action and get the next car state    
-    [heater_ip, fan_ip, hum_ip]  = DoAction( action, heater_ip, fan_ip, hum_ip);
-    
-    % Current state
-    
+    xp  = DoAction( action , x, maze );    
     
     % observe the reward at state xp and the final state flag
     [r,f]   = GetReward(xp,goal);
@@ -68,7 +73,7 @@ for i=1:maxsteps
    
     % Plot of the mountain car problem
     if (grafic==true)
-        Plot( x,a,steps,maze,start,goal,['With Proiritized Sweeping']);
+        Plot( x,a,steps,maze,start,goal,['PLANNING (N=' num2str(p_steps) ')']);
     end
     
     % if reachs the goal breaks the episode

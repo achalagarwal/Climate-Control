@@ -1,19 +1,14 @@
 function Q  = PrioritizedSweeping(Q, Model, s, a, r, sp, alpha, gamma, theta, pqueue)
-% UpdateQ: update the Qtable and return it using a Prioritized Sweep of the
-% state-action space
-% s: previous state before taking action (a)
-% sp: current state after action (a)
+% UpdateQ update de Qtable and return it using Whatkins Q-Learing
+% s1: previous state before taking action (a)
+% s2: current state after action (a)
 % r: reward received from the environment after taking action (a) in state
-%   s and reaching the state sp
+%                                             s1 and reaching the state s2
 % a:  the last executed action
+% tab: the current Qtable
 % alpha: learning rate
 % gamma: discount factor
-% theta: the threshold for change in update value p, above which a
-%   state-action pair will be put in the queue of updating the QTable
 % Q: the resulting Qtable
-% Current estimated model of the environment
-% p: The update value towards which a backup is shifted
-
 
 p = abs((r + gamma*max(Q(sp,:))) - Q(s,a));
     if (p > theta)

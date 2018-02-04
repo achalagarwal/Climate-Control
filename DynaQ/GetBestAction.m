@@ -10,7 +10,7 @@ function [ a ] = GetBestAction( Q, s )
 
 nactions=size(Q,2);
 
-[v, idx]    = sort(Q(s,:),'descend');
+[v idx]    = sort(Q(s,:),'descend');
 x          = diff(v);
 i          = find(x,1);
 

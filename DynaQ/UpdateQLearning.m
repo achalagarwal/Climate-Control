@@ -11,5 +11,5 @@ function [ Q ] = UpdateQLearning( s, a, r, sp, Q , alpha, gamma )
 % Q: the resulting Qtable
 
 TD_error =   ((r + gamma*max(Q(sp,:))) - Q(s,a));
-Q(s,a) =  Q(s,a) + alpha * TD_error;
+Q(s,a) =  Q(s,a) + alpha(s,a) * TD_error;
 
