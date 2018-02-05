@@ -2,7 +2,9 @@ function [ posp ] = DoAction( action, pos,maze )
 %DoAction: executes the action (a) into the environment
 % a: is the direction 
 % pos: is the vector containning the position 
-
+hum = 0.0
+fan = 0.0
+heat = 0.0
 
 
 x = pos(1);

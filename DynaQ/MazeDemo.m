@@ -8,10 +8,10 @@ function  MazeDemo()
 %  Jose Antonio Martin H. <jamartinh@fdi.ucm.es>
 % 
 
-maxepisodes = 5;
-start       = [9 4];
+maxepisodes = 20;
+start       = [9 0];
 goal        = [0 0];
-current = [5 9];
+current = [0 0];
 [maze N M]  = CreateMaze();
 
 
@@ -26,12 +26,12 @@ Q           = BuildQTable(nstates,nactions ); % the Qtable
 Model       = BuildModel(nstates,nactions ); % the Qtable  
 
 % planning steps
-p_steps     = 100;
+p_steps     = 200;
 
-maxsteps    = 3000;  % maximum number of steps per episode
+maxsteps    = 5000;  % maximum number of steps per episode
 alpha_init  = 0.8;   % initial learning rate for all (s,a) pairs
 gamma       = 0.95;  % discount factor
-epsilon     = 0.3;   % probability of a random action selection
+epsilon     = 0.8;   % probability of a random action selection
 theta       = 0.1;   % error threshold
 
 
@@ -66,17 +66,18 @@ for i=1:maxepisodes
         grafica=true;
     end
 end
-save('haaa','Q','Model');
-for j=1:size(Q,1)
-    for k = 1:size(Q,2)
-        if(Q(i,k)~=0)
-            printf('state');
-            statelist(i)
-            Q(i,:)
-            break;
-        end
-    end
-    
+save('haaa','Q','Model','statelist','start','goal','maze');
+ Apply(Q,statelist,[start,[0,0]],goal,maze);
+% for j=1:size(Q,1)
+%     for k = 1:size(Q,2)
+%         if(Q(i,k)<1)
+%             fprintf('state');
+%             statelist(i,:)
+%             Q(i,:)
+%             break;
+%         end
+%     end
+%     Apply(Q,statelist,[9,4,5,9],goal,maze)
 end
 
 
