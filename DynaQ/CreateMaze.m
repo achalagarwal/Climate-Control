@@ -1,8 +1,8 @@
 function [ maze,nrows,ncols ] = CreateMaze()
 %CREATEMAZE Summary of this function goes here
 %   Detailed explanation goes here
-nrows = 30;
-ncols = 30;
+nrows = 20;
+ncols = 20;
 
 % Maze base
 maze = zeros(nrows,ncols);

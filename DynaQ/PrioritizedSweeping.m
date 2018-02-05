@@ -9,7 +9,6 @@ function Q  = PrioritizedSweeping(Q, Model, s, a, r, sp, alpha, gamma, theta, pq
 % alpha: learning rate
 % gamma: discount factor
 % Q: the resulting Qtable
-
 p = abs((r + gamma*max(Q(sp,:))) - Q(s,a));
     if (p > theta)
         pqueue.push(1/p,[s a]);
@@ -29,7 +28,7 @@ while(pqueue.size ~= 0)
         rbar = Model(sbar(i),abar(i),2);
         p = abs(rbar + gamma*max(Q(s,:)) - Q(sbar(i),abar(i)));
         if (p > theta)
-            pqueue.push(1./p,[sbar(i) abar(i)]);
+            pqueue.push(1/p,[sbar(i) abar(i)]);
         end
     end
 end

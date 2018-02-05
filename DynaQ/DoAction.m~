@@ -8,7 +8,7 @@ function [ posp ] = DoAction( action, pos,maze )
 x = pos(1);
 y = pos(2); 
 xold = x;
-yold = y;
+
 cT = pos(3);
 cH = pos(4);
 [N M] = size(maze);
@@ -24,28 +24,28 @@ ymin = -M/2;
  %1,2 are fan up and down
  %3,4 are heater up and down
 if (action==1)
-%     cT = cT - 2;
+    cT = cT - 2;
     x = x + 2;
 elseif (action==2)
-%     cT = cT + 2;
+    cT = cT + 2;
     x = x - 2;
 elseif (action==3)
-%     cT = cT + 2;
+    cT = cT + 2;
     x = x - 2;
-%     cH = cH-1;
+    cH = cH-1;
     y = y+1;
 elseif (action==4)
-%     cT = cT - 2;
+    cT = cT - 2;
     x = x + 2;
 elseif (action==5)
-%     cH = cH + 2;
+    cH = cH + 2;
     y = y -2;
-%     cT = cT + 1;
+    cT = cT + 1;
     x = x-1;
 elseif (action==6)
-%     cH = cH - 2;
+    cH = cH - 2;
     y = y+2;
-%     cT = cT - 1;
+    cT = cT - 1;
     x = x + 1;
 end
 
@@ -54,16 +54,13 @@ x = max(xmin,x);
 
 y = min(ymax,y);
 y = max(ymin,y);
-cT = cT - (x - xold);
-cH = cH - (y - yold);
 
-% 
-% if maze(x+1,y+1)==1
-%     x = pos(1);
-%     y = pos(2); 
-% end
+if maze(x+1,y+1)==1
+    x = pos(1);
+    y = pos(2); 
+end
 
-posp=[x y cT cH];
+posp=[x y];
 
 
 

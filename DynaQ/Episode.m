@@ -1,4 +1,4 @@
-function [ total_reward,steps,Q,Model,Ns,alpha ] = Episode( maxsteps, Q,Model , alpha, Ns, gamma,epsilon,statelist,actionlist,grafic,maze,start,goal,p_steps )
+function [ total_reward,steps,Q,Model,Ns,alpha ] = Episode( maxsteps, Q,Model , alpha, Ns, gamma,epsilon,statelist,actionlist,grafic,maze,start,current,goal,p_steps )
 % Episode do one episode of the mountain car with sarsa learning
 % maxstepts: the maximum number of steps per episode
 % Q: the current QTable
@@ -17,7 +17,7 @@ function [ total_reward,steps,Q,Model,Ns,alpha ] = Episode( maxsteps, Q,Model , 
 
 
 
-x            = start;
+x            = [start,current];
 steps        = 0;
 total_reward = 0;
 

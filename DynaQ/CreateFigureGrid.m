@@ -5,6 +5,8 @@ function CreateFigureGrid(N,M)
 
 % Create figure
 %figure1 = figure('PaperSize',[20.98 29.68]);
+N = N+2;
+M = M+2;
 figure1 = figure();
 % Create axes
 axes1 = axes('Parent',figure1,'YTick',0:M,'YGrid','on',...

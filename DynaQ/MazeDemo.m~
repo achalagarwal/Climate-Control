@@ -66,14 +66,13 @@ for i=1:maxepisodes
         grafica=true;
     end
 end
-save('haaa','Q','Model');
+j = 0;
 for j=1:size(Q,1)
+    k = 0;
     for k = 1:size(Q,2)
         if(Q(i,k)~=0)
-            printf('state');
-            statelist(i)
+            printf
             Q(i,:)
-            break;
         end
     end
     
