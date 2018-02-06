@@ -1,4 +1,4 @@
-function [ posp,powersupply ] = DoAction( action, pos,maze,powersupply )
+function [ posp ] = DoAction( action, pos,maze,powersupply )
 %DoAction: executes the action (a) into the environment
 % a: is the direction 
 % pos: is the vector containning the position 
@@ -30,26 +30,22 @@ if (action==1)
     x = x + 2;
 elseif (action==2)
 %     cT = cT + 2;
-    fan = fan-0.4;
+    fan = fan-0.4
     x = x - 2;
 elseif (action==3)
 %     cT = cT + 2;
-    heater = heater + 0.4;
     x = x - 2;
 %     cH = cH-1;
     y = y+1;
 elseif (action==4)
 %     cT = cT - 2;
-    heater = heater - 0.4;
     x = x + 2;
 elseif (action==5)
 %     cH = cH + 2;
-    humidifier = humidifier + 0.4;
     y = y -2;
 %     cT = cT + 1;
     x = x-1;
 elseif (action==6)
-    humidifier = humidifier - 0.4;
 %     cH = cH - 2;
     y = y+2;
 %     cT = cT - 1;
@@ -69,7 +65,7 @@ cH = cH - (y - yold);
 %     x = pos(1);
 %     y = pos(2); 
 % end
-powersupply = [fan heater humidifier];
+
 posp=[x y cT cH];
 
 

@@ -14,7 +14,7 @@ goal        = [0 0];
 current = [0 0];
 [maze N M]  = CreateMaze();
 
-
+powersup
 
 statelist   = BuildStateList(N,M,start,current);  % the list of states
 actionlist  = BuildActionList(); % the list of actions

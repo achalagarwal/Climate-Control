@@ -14,7 +14,7 @@ goal        = [0 0];
 current = [0 0];
 [maze N M]  = CreateMaze();
 
-
+powersupply = zeros(1,3);
 
 statelist   = BuildStateList(N,M,start,current);  % the list of states
 actionlist  = BuildActionList(); % the list of actions
@@ -46,7 +46,7 @@ alpha = alpha_init.*ones(nstates,nactions);
 for i=1:maxepisodes    
     
     
-    [total_reward,steps,Q,Model,Ns,alpha] =  Episode( maxsteps, Q, Model , alpha, Ns, gamma,epsilon, statelist,actionlist,grafica,maze,start,current,goal,p_steps ) ;  
+    [total_reward,steps,Q,Model,Ns,alpha] =  Episode( maxsteps, Q, Model , alpha, Ns, gamma,epsilon, statelist,actionlist,grafica,maze,start,current,goal,p_steps,powersupply) ;  
     disp(['Espisode: ',int2str(i),'  Steps:',int2str(steps),'  Reward:',num2str(total_reward),' epsilon: ',num2str(epsilon)])
     
     epsilon = epsilon*0.9;
@@ -67,7 +67,7 @@ for i=1:maxepisodes
     end
 end
 save('haaa','Q','Model','statelist','start','goal','maze');
- Apply(Q,statelist,[start,[0,0]],goal,maze);
+ Apply(Q,statelist,[start,[0,0]],goal,maze,powersupply);
 % for j=1:size(Q,1)
 %     for k = 1:size(Q,2)
 %         if(Q(i,k)<1)

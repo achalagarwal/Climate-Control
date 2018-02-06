@@ -1,4 +1,4 @@
-function  Apply( Q,statelist,start,goal,maze )
+function  Apply( Q,statelist,start,goal,maze,powersupply )
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
 % curr = DiscretizeState(start,statelist);
@@ -14,6 +14,6 @@ while curr(1)~=goal(1)||curr(2)~=goal(2)
     
     i = e_greedy_selection(Q,z,0)
     
-    curr = DoAction(i,curr,maze);
+    curr = DoAction(i,curr,maze,powersupply);
 end
 

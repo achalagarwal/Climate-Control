@@ -1,4 +1,4 @@
-function [ total_reward,steps,Q,Model,Ns,alpha ] = Episode( maxsteps, Q,Model , alpha, Ns, gamma,epsilon,statelist,actionlist,grafic,maze,start,current,goal,p_steps )
+function [ total_reward,steps,Q,Model,Ns,alpha ] = Episode( maxsteps, Q,Model , alpha, Ns, gamma,epsilon,statelist,actionlist,grafic,maze,start,current,goal,p_steps,powersupply)
 % Episode do one episode of the mountain car with sarsa learning
 % maxstepts: the maximum number of steps per episode
 % Q: the current QTable
@@ -37,10 +37,10 @@ for i=1:maxsteps
     action = actionlist(a);    
     
     %do the selected action and get the next car state    
-    xp  = DoAction( action , x, maze );    
+    [xp,powersupply]  = DoAction( action , x, maze, powersupply);    
     
     % observe the reward at state xp and the final state flag
-    [r,f]   = GetReward(xp,goal);
+    [r,f]   = GetReward(xp,goal,powersupply);
     total_reward = total_reward + r;
     
     % convert the continous state variables in [xp] to an index of the statelist    
