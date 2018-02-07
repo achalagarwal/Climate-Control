@@ -7,13 +7,13 @@ heater = powersupply(1,2);
 humidifier = powersupply(1,3);
 
 x = pos(1);
-y = pos(2); 
+y = pos(2);
 xold = x;
 yold = y;
 cT = pos(3);
 cH = pos(4);
 [N M] = size(maze);
-
+% h = 6.112*exp(17*cT/(cT+243.5))*cH/(cT+273)
 % bounds for x
 xmax = N/2; 
 xmin = -N/2;
@@ -26,8 +26,9 @@ ymin = -M/2;
  %3,4 are heater up and down
 if (action==1)
 %     cT = cT - 2;
-    fan = fan+0.4;
-    x = x + 2;
+    fan = fan+0.2;
+    x = x + 1;
+    
 elseif (action==2)
 %     cT = cT + 2;
     fan = fan-0.4;
@@ -73,6 +74,12 @@ powersupply = [fan heater humidifier];
 posp=[x y cT cH];
 
 
+%  Humidity = 6.112 * e^[(17.67 * T)/(T+243.5)] * rh * 18.02
+%                                                                             (273.15+T) x 100 x 0.08314
+% 
+% [4.9696]
+% 
+% [23.643*38.63 23.643+38.63 1]
 
 
 

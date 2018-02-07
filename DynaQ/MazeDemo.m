@@ -8,10 +8,10 @@ function  MazeDemo()
 %  Jose Antonio Martin H. <jamartinh@fdi.ucm.es>
 % 
 
-maxepisodes = 20;
-start       = [9 0];
+maxepisodes = 40;
+start       = [10 10];
 goal        = [0 0];
-current = [0 0];
+current = [10 10];
 [maze N M]  = CreateMaze();
 
 powersupply = zeros(1,3);
@@ -26,16 +26,17 @@ Q           = BuildQTable(nstates,nactions ); % the Qtable
 Model       = BuildModel(nstates,nactions ); % the Qtable  
 
 % planning steps
-p_steps     = 200;
+p_steps     = 2000;
 
 maxsteps    = 5000;  % maximum number of steps per episode
 alpha_init  = 0.8;   % initial learning rate for all (s,a) pairs
-gamma       = 0.95;  % discount factor
-epsilon     = 0.8;   % probability of a random action selection
+gamma       = 0.999;  % discount factor
+epsilon     = 0.9;   % probability of a random action selection
 theta       = 0.1;   % error threshold
 
 
-grafica     = true; % indicates if display the graphical interface
+grafica     = false
+; % indicates if display the graphical interface
 xpoints=[];
 ypoints=[];
 
@@ -56,18 +57,18 @@ for i=1:maxepisodes
     
     xpoints(i)=i-1;
     ypoints(i)=steps;
-    subplot(2,1,2);
-    plot(xpoints,ypoints)      
-    title(['Episode: ',int2str(i),' epsilon: ',num2str(epsilon)])    
+%     subplot(2,1,2);
+%     plot(xpoints,ypoints)      
+%     title(['Episode: ',int2str(i),' epsilon: ',num2str(epsilon)])    
     
     drawnow
     
-    if (i>2000000)
-        grafica=true;
-    end
+%     if (i>2000000)
+%         grafica=true;
+%     end
 end
-save('haaa','Q','Model','statelist','start','goal','maze');
- Apply(Q,statelist,[start,[0,0]],goal,maze,powersupply);
+save('haaa','Q','Model','statelist','start','goal','maze','powersupply');
+ Apply(Q,statelist,[start,[10,10]],goal,maze,powersupply);
 % for j=1:size(Q,1)
 %     for k = 1:size(Q,2)
 %         if(Q(i,k)<1)

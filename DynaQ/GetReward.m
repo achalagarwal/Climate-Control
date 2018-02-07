@@ -17,7 +17,7 @@ for i=1:size(powersupply,2)
 end
 
 if (pos(1:2)==goal) 
-	r = r + 10000;
+	r = r + 100000;
     f = true;
 else
     r = r - 100;   
