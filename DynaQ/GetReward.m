@@ -12,7 +12,7 @@ for i=1:size(powersupply,2)
         r = r - 1000;
     end
     if powersupply(1,i)<0
-        r = r - 5000;
+        r = r - 50000;
     end
 end
 

@@ -3,6 +3,7 @@ function  Apply( Q,statelist,start,goal,maze,powersupply )
 %   Detailed explanation goes here
 % curr = DiscretizeState(start,statelist);
 curr = start;
+int r = 0;
 while curr(1)~=goal(1)||curr(2)~=goal(2)
    
      
@@ -13,8 +14,10 @@ while curr(1)~=goal(1)||curr(2)~=goal(2)
       statelist(z,:)
 
     
-    i = id(1,1);
-    
+    %i = id(1,1);
+    i = GetBestAction(Q,z);
     curr = DoAction(i,curr,maze,powersupply);
+    [tt zz]= GetReward(curr,goal,powersupply);
+    r = r+tt;
 end
 

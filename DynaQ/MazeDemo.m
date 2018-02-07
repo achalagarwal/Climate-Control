@@ -9,7 +9,7 @@ function  MazeDemo()
 % 
 
 maxepisodes = 40;
-start       = [10 10];
+start       = [10 0];
 goal        = [0 0];
 current = [10 10];
 [maze N M]  = CreateMaze();
