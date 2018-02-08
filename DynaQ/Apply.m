@@ -3,7 +3,7 @@ function  Apply( Q,statelist,start,goal,maze,powersupply )
 %   Detailed explanation goes here
 % curr = DiscretizeState(start,statelist);
 curr = start;
-int r = 0;
+ r = 0;
 while curr(1)~=goal(1)||curr(2)~=goal(2)
    
      
