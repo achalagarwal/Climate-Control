@@ -5,9 +5,14 @@ function [ posp,powersupply ] = DoAction( action, pos,maze,powersupply )
 fan = powersupply(1,1);
 heater = powersupply(1,2);
 humidifier = powersupply(1,3);
+toc;
+persistent oldTd oldTh;
+
 
 x = pos(1);
 y = pos(2);
+oldTd = x;
+oldTh = y;
 xold = x;
 yold = y;
 cT = pos(3);
@@ -72,8 +77,9 @@ cH = cH - (y - yold);
 % end
 powersupply = [fan heater humidifier];
 posp=[x y cT cH];
-
-
+ted = (x-oldTd)/toc
+hed = (y - oldTh)/toc
+tic;
 %  Humidity = 6.112 * e^[(17.67 * T)/(T+243.5)] * rh * 18.02
 %                                                                             (273.15+T) x 100 x 0.08314
 % 

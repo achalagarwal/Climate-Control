@@ -1,4 +1,4 @@
-function  MazeDemo( maxepisodes )
+function  MazeDemo_queue
 %MazeDemo, the main function of the demo
 %maxepisodes: maximum number of episodes to run the demo
 
@@ -8,14 +8,15 @@ function  MazeDemo( maxepisodes )
 %  Jose Antonio Martin H. <jamartinh@fdi.ucm.es>
 % 
 
-
-start       = [0 0];
-goal        = [29 24];
+maxepisodes = 20;
+start       = [10 0];
+goal =        [0 0];
+current     = [10 10];
 [maze N M]  = CreateMaze();
 
+powersupply = zeros(1,3);
 
-
-statelist   = BuildStateList(N,M);  % the list of states
+statelist   = BuildStateList(N,M,start,current);  % the list of states
 actionlist  = BuildActionList(); % the list of actions
 
 nstates     = size(statelist,1);
@@ -26,16 +27,16 @@ Q           = BuildQTable(nstates,nactions ); % the Qtable
 Model       = BuildModel(nstates,nactions ); % the Qtable  
 
 % planning steps
-p_steps     = 100;
+p_steps     = 1000;
 
-maxsteps    = 3000;  % maximum number of steps per episode
+maxsteps    = 5000;  % maximum number of steps per episode
 alpha_init  = 0.8;   % initial learning rate for all (s,a) pairs
 gamma       = 0.95;  % discount factor
-epsilon     = 0.3;   % probability of a random action selection
-theta       = 0.1;   % error threshold
+epsilon     = 0.1;   % probability of a random action selection
+theta       = 0.7;   % error threshold
 
 
-grafica     = true; % indicates if display the graphical interface
+grafica     = false; % indicates if display the graphical interface
 xpoints=[];
 ypoints=[];
 
@@ -46,7 +47,7 @@ alpha = alpha_init.*ones(nstates,nactions);
 for i=1:maxepisodes    
     
     
-    [total_reward,steps,Q,Model,Ns,alpha] =  Episode_queue( maxsteps, Q, Model , alpha, Ns, gamma,epsilon,theta, statelist,actionlist,grafica,maze,start,goal,p_steps ) ;  
+    [total_reward,steps,Q,Model,Ns,alpha] =  Episode_queue( maxsteps, Q, Model , alpha, Ns, gamma,epsilon,theta, statelist,actionlist,grafica,maze,start,current,goal,p_steps,powersupply ) ;  
     disp(['Espisode: ',int2str(i),'  Steps:',int2str(steps),'  Reward:',num2str(total_reward),' epsilon: ',num2str(epsilon)])
     
     epsilon = epsilon*0.9;
@@ -62,13 +63,14 @@ for i=1:maxepisodes
     
     drawnow
     
-    if (i>2000000)
-        grafica=true;
-    end
+%     if (i>2000000)
+%         grafica=true;
+%     end
 end
+save('haaa','Q','Model','statelist','start','goal','maze','powersupply');
+ Apply(Q,statelist,[start,[10,10]],goal,maze,powersupply);
 
 
-
-
+end
 
 

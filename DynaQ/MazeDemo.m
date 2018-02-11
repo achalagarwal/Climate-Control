@@ -8,7 +8,7 @@ function  MazeDemo()
 %  Jose Antonio Martin H. <jamartinh@fdi.ucm.es>
 % 
 
-maxepisodes = 40;
+maxepisodes = 10;
 start       = [10 0];
 goal        = [0 0];
 current = [10 10];
@@ -31,11 +31,11 @@ p_steps     = 2000;
 maxsteps    = 5000;  % maximum number of steps per episode
 alpha_init  = 0.8;   % initial learning rate for all (s,a) pairs
 gamma       = 0.999;  % discount factor
-epsilon     = 0.9;   % probability of a random action selection
+epsilon     = 1;   % probability of a random action selection
 theta       = 0.1;   % error threshold
 
 
-grafica     = false
+grafica     = true;
 ; % indicates if display the graphical interface
 xpoints=[];
 ypoints=[];
@@ -43,23 +43,23 @@ ypoints=[];
 %Number of times a state has been visited (for changing alpha)
 Ns = zeros(nstates,nactions);
 alpha = alpha_init.*ones(nstates,nactions);
-
+tic;
 for i=1:maxepisodes    
     
     
     [total_reward,steps,Q,Model,Ns,alpha] =  Episode( maxsteps, Q, Model , alpha, Ns, gamma,epsilon, statelist,actionlist,grafica,maze,start,current,goal,p_steps,powersupply) ;  
     disp(['Espisode: ',int2str(i),'  Steps:',int2str(steps),'  Reward:',num2str(total_reward),' epsilon: ',num2str(epsilon)])
     
-    epsilon = epsilon*0.9;
+    epsilon = epsilon*0.7;
     
     % Reducing alpha for visited states
     alpha(Ns>1) = alpha(Ns>1) ./ Ns(Ns>1);
     
     xpoints(i)=i-1;
     ypoints(i)=steps;
-%     subplot(2,1,2);
-%     plot(xpoints,ypoints)      
-%     title(['Episode: ',int2str(i),' epsilon: ',num2str(epsilon)])    
+   subplot(2,1,2);
+     plot(xpoints,ypoints)      
+     title(['Episode: ',int2str(i),' epsilon: ',num2str(epsilon)])    
     
     drawnow
     
