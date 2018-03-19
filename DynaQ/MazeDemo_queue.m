@@ -7,7 +7,7 @@ function  MazeDemo_queue
 % by:
 %  Jose Antonio Martin H. <jamartinh@fdi.ucm.es>
 % 
-
+tic;
 maxepisodes = 20;
 start       = [10 0];
 goal =        [0 0];
@@ -27,16 +27,16 @@ Q           = BuildQTable(nstates,nactions ); % the Qtable
 Model       = BuildModel(nstates,nactions ); % the Qtable  
 
 % planning steps
-p_steps     = 1000;
+p_steps     = 100;
 
-maxsteps    = 5000;  % maximum number of steps per episode
+maxsteps    = 500;  % maximum number of steps per episode
 alpha_init  = 0.8;   % initial learning rate for all (s,a) pairs
 gamma       = 0.95;  % discount factor
 epsilon     = 0.1;   % probability of a random action selection
 theta       = 0.7;   % error threshold
 
 
-grafica     = false; % indicates if display the graphical interface
+grafica     = true; % indicates if display the graphical interface
 xpoints=[];
 ypoints=[];
 
