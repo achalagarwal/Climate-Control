@@ -17,7 +17,7 @@ while curr(1)~=goal(1)||curr(2)~=goal(2)
     %i = id(1,1);
     i = GetBestAction(Q,z);
     curr = DoAction(i,curr,maze,powersupply);
-    [tt zz]= GetReward(curr,goal,powersupply);
+    [tt zz]= GetReward(curr,goal,powersupply)
     r = r+tt;
 end
 

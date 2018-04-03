@@ -1,4 +1,4 @@
-function [ total_reward,steps,Q,Model,Ns,alpha ] = Episode( maxsteps, Q,Model , alpha, Ns, gamma,epsilon,statelist,actionlist,grafic,maze,start,current,goal,p_steps,powersupply)
+function [ total_reward,steps,Q,Model,Ns,alpha ] = Episode( maxsteps, Q,Model , alpha, Ns, gamma,epsilon,statelist,actionlist,grafic,maze,start,current,goal,e,p_steps,powersupply)
 % Episode do one episode of the mountain car with sarsa learning
 % maxstepts: the maximum number of steps per episode
 % Q: the current QTable
@@ -21,7 +21,7 @@ x            = [start,current];
 steps        = 0;
 total_reward = 0;
 
-
+x=[x,e(1),e(2)];
 % convert the continous state variables to an index of the statelist
 s   = DiscretizeState(x,statelist);
 % selects an action using the epsilon greedy selection strategy
@@ -36,7 +36,7 @@ for i=1:maxsteps
     % convert the index of the action into an action value
     action = actionlist(a);    
     
-    %do the selected action and get the next car state    
+    %do the selected action and get the next  state    
     [xp,powersupply]  = DoAction( action , x, maze, powersupply);    
     
     % observe the reward at state xp and the final state flag

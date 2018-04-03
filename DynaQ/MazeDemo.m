@@ -7,16 +7,21 @@ function  MazeDemo()
 % by:
 %  Jose Antonio Martin H. <jamartinh@fdi.ucm.es>
 % 
+global temp;
+global vapour;
 
-maxepisodes = 10;
+maxepisodes = 20;
 start       = [10 0];
+setGlobalTemp(10);
+setGlobalVapour(0);
 goal        = [0 0];
 current = [10 10];
 [maze N M]  = CreateMaze();
 
 powersupply = zeros(1,3);
+e = zeros(2,1);
 
-statelist   = BuildStateList(N,M,start,current);  % the list of states
+statelist   = BuildStateList(N,M,start,current,e);  % the list of states
 actionlist  = BuildActionList(); % the list of actions
 
 nstates     = size(statelist,1);
@@ -26,11 +31,11 @@ Q           = BuildQTable(nstates,nactions ); % the Qtable
 Model       = BuildModel(nstates,nactions ); % the Qtable  
 
 % planning steps
-p_steps     = 2000;
+p_steps     = 100;
 
 maxsteps    = 5000;  % maximum number of steps per episode
 alpha_init  = 0.8;   % initial learning rate for all (s,a) pairs
-gamma       = 0.999;  % discount factor
+gamma       = 0.95;  % discount factor
 epsilon     = 1;   % probability of a random action selection
 theta       = 0.1;   % error threshold
 
@@ -47,10 +52,10 @@ tic;
 for i=1:maxepisodes    
     
     
-    [total_reward,steps,Q,Model,Ns,alpha] =  Episode( maxsteps, Q, Model , alpha, Ns, gamma,epsilon, statelist,actionlist,grafica,maze,start,current,goal,p_steps,powersupply) ;  
+    [total_reward,steps,Q,Model,Ns,alpha] =  Episode( maxsteps, Q, Model , alpha, Ns, gamma,epsilon, statelist,actionlist,grafica,maze,start,current,goal,e,p_steps,powersupply) ;  
     disp(['Espisode: ',int2str(i),'  Steps:',int2str(steps),'  Reward:',num2str(total_reward),' epsilon: ',num2str(epsilon)])
     
-    epsilon = epsilon*0.7;
+    epsilon = epsilon*0.9;
     
     % Reducing alpha for visited states
     alpha(Ns>1) = alpha(Ns>1) ./ Ns(Ns>1);

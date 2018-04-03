@@ -1,0 +1,19 @@
+function[temp,humid test()
+
+function test()
+tic;
+
+for i=1:100000000
+end
+%check time required for one cycle in an episode. that is the time
+%difference which is currently used as dt 
+%when an action is taken, compute required values of flux and for
+%1 second (100000000 looping counter) evaluate params then return all data
+%add wait action which does not enter the function (run this in IPC)
+toc
+
+%sample function
+
+input(temp, humidity,values)
+output(ted,hed,temperature,wait time),
+end

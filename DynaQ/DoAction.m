@@ -5,19 +5,14 @@ function [ posp,powersupply ] = DoAction( action, pos,maze,powersupply )
 fan = powersupply(1,1);
 heater = powersupply(1,2);
 humidifier = powersupply(1,3);
-toc;
-persistent oldTd oldTh;
 
 
 x = pos(1);
 y = pos(2);
-oldTd = x;
-oldTh = y;
-xold = x;
-yold = y;
+
 cT = pos(3);
 cH = pos(4);
-[N M] = size(maze);
+[N, M] = size(maze);
 % h = 6.112*exp(17*cT/(cT+243.5))*cH/(cT+273)
 % bounds for x
 xmax = N/2; 
@@ -32,54 +27,56 @@ ymin = -M/2;
 if (action==1)
 %     cT = cT - 2;
     fan = fan+0.2;
-    x = x + 1;
+%     x = x + 1;
     
 elseif (action==2)
 %     cT = cT + 2;
-    fan = fan-0.4;
-    x = x - 2;
+    fan = fan-0.2;
+%     x = x - 2;
 elseif (action==3)
 %     cT = cT + 2;
-    heater = heater + 0.4;
-    x = x - 2;
+    heater = heater + 0.2;
+%     x = x - 2;
 %     cH = cH-1;
-    y = y+1;
+%     y = y+1;
 elseif (action==4)
 %     cT = cT - 2;
-    heater = heater - 0.4;
-    x = x + 2;
+    heater = heater - 0.2;
+%     x = x + 2;
 elseif (action==5)
 %     cH = cH + 2;
-    humidifier = humidifier + 0.4;
-    y = y -2;
+    humidifier = humidifier + 0.2;
+%     y = y -2;
 %     cT = cT + 1;
-    x = x-1;
+%     x = x-1;
 elseif (action==6)
-    humidifier = humidifier - 0.4;
+    humidifier = humidifier - 0.2;
 %     cH = cH - 2;
-    y = y+2;
+%     y = y+2;
 %     cT = cT - 1;
-    x = x + 1;
+%     x = x + 1;
 end
 
-x = min(xmax,x);
-x = max(xmin,x);
+[c ,e] = mapEffect(fan,heater,humidifier);
+xn = x+ c(1) - cT;
+yn = y +c(2) - cH;
+xn = min(xmax,xn);
+xn = max(xmin,xn);
 
-y = min(ymax,y);
-y = max(ymin,y);
-cT = cT - (x - xold);
-cH = cH - (y - yold);
-
+yn = min(ymax,yn);
+yn = max(ymin,yn);
+cT = cT - (xn - x);
+cH = cH - (yn - y);
+setGlobalTemp(cT);
+setGlobalVapour(cH);
 % 
 % if maze(x+1,y+1)==1
 %     x = pos(1);
 %     y = pos(2); 
 % end
 powersupply = [fan heater humidifier];
-posp=[x y cT cH];
-ted = (x-oldTd)/toc
-hed = (y - oldTh)/toc
-tic;
+posp=[xn yn cT cH e(1) e(2)];
+
 %  Humidity = 6.112 * e^[(17.67 * T)/(T+243.5)] * rh * 18.02
 %                                                                             (273.15+T) x 100 x 0.08314
 % 

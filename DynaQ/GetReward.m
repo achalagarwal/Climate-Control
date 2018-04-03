@@ -11,12 +11,14 @@ for i=1:size(powersupply,2)
     if powersupply(1,i)>10
         r = r - 1000;
     end
-    if powersupply(1,i)<0
-        r = r - 50000;
+    if powersupply(1,i)<-10
+            r = r - 50000;
     end
+    
 end
-
-if (pos(1:2)==goal) 
+gU = goal+[1,1];
+gL = goal-[1,1];
+if pos(1)<gU(1) && pos(1)>gL(1) && pos(2)<gU(2) && pos(2)>gL(2)
 	r = r + 100000;
     f = true;
 else
