@@ -1,9 +1,12 @@
-function Q = TempHumDemo(temp_ext,temp_setpt,hum_ext,hum_setpt,Q,norandom)
+%tfunction Q = TempHumDemo(temp_ext,temp_setpt,hum_ext,hum_setpt,Q,norandom)
 % The main function of the training
 
 % Extrinsic calls to these functions which wouldn't otherwise work in
 % a MATLAB function block
-
+temp_ext = 10
+temp_setpt = 0
+hum_ext = 10
+hum_setpt = 0
 maxepisodes = 20;
 
 N = 30;     % range for temp_err
